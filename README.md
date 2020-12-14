@@ -1,7 +1,7 @@
 # PyEmailTools
 
 ## Description
-PyEmailTools can perform email analysis and email forgering. I implement a client SMTP, IMAP and POP3 to facilitate the use of this package.
+PyEmailTools can perform email analysis and email forgering. I am implementing an SMTP, IMAP and POP3 client to make this package easier to use.
 
 ## Requirements
 This package require : 
@@ -149,7 +149,7 @@ Email {index} / {total}
 ```
 
 ## Link
-(Github Page) [ https://github.com/mauricelambert/PyEmailTools ]
+[Github Page](https://github.com/mauricelambert/PyEmailTools)
 
 ## Licence
-Licensed under the (GPL, version 3) [ https://www.gnu.org/licenses/ ].
+Licensed under the [GPL, version 3](https://www.gnu.org/licenses/).

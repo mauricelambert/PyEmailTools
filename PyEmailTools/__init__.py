@@ -23,7 +23,7 @@
 	This package implement tools for email analysis and email forgering.
 """
 
-__version__ = "0.0.1"
+__version__ = "0.0.6"
 
 __all__ = [
 	"Forger", "Reader", "ImapClient", "SmtpClient", "PopClient", 

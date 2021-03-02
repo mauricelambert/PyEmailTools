@@ -21,8 +21,12 @@
 
 """ This file implement the SmtpClient. """
 
-from .Email import Email
 import smtplib
+
+try:
+    from .Email import Email
+except ImportError:
+    from Email import Email
 
 __all__ = [ "SmtpClient" ]
 

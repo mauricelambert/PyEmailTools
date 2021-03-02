@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module Forger</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head><body bgcolor="#f0f0f8">
+
+<table summary="heading" width="100%" cellspacing="0" cellpadding="2" border="0">
+<tbody><tr bgcolor="#7799ee">
+<td valign="bottom">&nbsp;<br>
+<font face="helvetica, arial" color="#ffffff">&nbsp;<br><big><big><strong>Forger</strong></big></big></font></td><td valign="bottom" align="right"><font face="helvetica, arial" color="#ffffff"><a href="http://192.168.0.29:8001/doc/">index</a><br><a href="http://192.168.0.29:8001/doc/forger.py">forger.py</a></font></td></tr></tbody></table>
+    <p><tt>This&nbsp;file&nbsp;implement&nbsp;the&nbsp;<a href="#Forger">Forger</a>&nbsp;class.</tt></p>
+<p>
+<table summary="section" width="100%" cellspacing="0" cellpadding="2" border="0">
+<tbody><tr bgcolor="#aa55cc">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font face="helvetica, arial" color="#ffffff"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table summary="list" width="100%"><tbody><tr><td width="25%" valign="top"><a href="http://192.168.0.29:8001/doc/email.html">email</a><br>
+</td><td width="25%" valign="top"><a href="http://192.168.0.29:8001/doc/ntpath.html">ntpath</a><br>
+</td><td width="25%" valign="top"></td><td width="25%" valign="top"></td></tr></tbody></table></td></tr></tbody></table></p><p>
+<table summary="section" width="100%" cellspacing="0" cellpadding="2" border="0">
+<tbody><tr bgcolor="#ee77aa">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font face="helvetica, arial" color="#ffffff"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="http://192.168.0.29:8001/doc/Email.html#Email">Email.Email</a>(<a href="http://192.168.0.29:8001/doc/builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="http://192.168.0.29:8001/doc/Forger.html#Forger">Forger</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table summary="section" width="100%" cellspacing="0" cellpadding="2" border="0">
+<tbody><tr bgcolor="#ffc8d8">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font face="helvetica, arial" color="#000000"><a name="Forger">class <strong>Forger</strong></a>(<a href="http://192.168.0.29:8001/doc/Email.html#Email">Email.Email</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan="2"><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan="2"><tt><a href="#Forger">Forger</a>(mail,&nbsp;titre:&nbsp;str&nbsp;=&nbsp;None,&nbsp;pseudo:&nbsp;str&nbsp;=&nbsp;None,&nbsp;comments:&nbsp;str&nbsp;=&nbsp;None,&nbsp;keywords:&nbsp;list&nbsp;=&nbsp;None,&nbsp;date:&nbsp;datetime.datetime&nbsp;=&nbsp;datetime.datetime(2021,&nbsp;3,&nbsp;2,&nbsp;21,&nbsp;43,&nbsp;42,&nbsp;538772),&nbsp;encrypted:&nbsp;str&nbsp;=&nbsp;None,&nbsp;expires:&nbsp;datetime.datetime&nbsp;=&nbsp;None,&nbsp;importance:&nbsp;int&nbsp;=&nbsp;0,&nbsp;sensitivity:&nbsp;int&nbsp;=&nbsp;0,&nbsp;language:&nbsp;list&nbsp;=&nbsp;None,&nbsp;priority:&nbsp;int&nbsp;=&nbsp;0,&nbsp;add_from:&nbsp;bool&nbsp;=&nbsp;False,&nbsp;default_text:&nbsp;str&nbsp;=&nbsp;"Your&nbsp;mailer&nbsp;can't&nbsp;read&nbsp;this&nbsp;email.")<br>
+&nbsp;<br>
+This&nbsp;class&nbsp;can&nbsp;forge&nbsp;an&nbsp;email.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="http://192.168.0.29:8001/doc/Forger.html#Forger">Forger</a></dd>
+<dd><a href="http://192.168.0.29:8001/doc/Email.html#Email">Email.Email</a></dd>
+<dd><a href="http://192.168.0.29:8001/doc/builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Forger-__init__"><strong>__init__</strong></a>(self, 
+mail, titre: str = None, pseudo: str = None, comments: str = None, 
+keywords: list = None, date: datetime.datetime = datetime.datetime(2021,
+ 3, 2, 21, 43, 42, 538772), encrypted: str = None, expires: 
+datetime.datetime = None, importance: int = 0, sensitivity: int = 0, 
+language: list = None, priority: int = 0, add_from: bool = False, 
+default_text: str = "Your mailer can't read this email.")</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Forger-add_attachement"><strong>add_attachement</strong></a>(self, filename)</dt><dd><tt>This&nbsp;method&nbsp;add&nbsp;part&nbsp;attachment&nbsp;in&nbsp;email.</tt></dd></dl>
+
+<dl><dt><a name="Forger-add_image"><strong>add_image</strong></a>(self, filename, html)</dt><dd><tt>This&nbsp;method&nbsp;add&nbsp;part&nbsp;in&nbsp;email&nbsp;with&nbsp;image&nbsp;(this&nbsp;image&nbsp;isn't&nbsp;a&nbsp;attachment).<br>
+This&nbsp;image&nbsp;must&nbsp;be&nbsp;inside&nbsp;HTML&nbsp;code.</tt></dd></dl>
+
+<dl><dt><a name="Forger-add_part"><strong>add_part</strong></a>(self, text, content='plain', add=True)</dt><dd><tt>This&nbsp;method&nbsp;add&nbsp;a&nbsp;part&nbsp;in&nbsp;email.</tt></dd></dl>
+
+<dl><dt><a name="Forger-add_recipient"><strong>add_recipient</strong></a>(self, email)</dt><dd><tt>This&nbsp;method&nbsp;add&nbsp;a&nbsp;receiver&nbsp;address.</tt></dd></dl>
+
+<dl><dt><a name="Forger-make_email"><strong>make_email</strong></a>(self)</dt><dd><tt>This&nbsp;method&nbsp;build&nbsp;the&nbsp;email&nbsp;message.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="http://192.168.0.29:8001/doc/Email.html#Email">Email.Email</a>:<br>
+<dl><dt><a name="Forger-check_email"><strong>check_email</strong></a>(self, email: str) -&gt; bool</dt><dd><tt>This&nbsp;method&nbsp;check&nbsp;an&nbsp;email&nbsp;address.</tt></dd></dl>
+
+<dl><dt><a name="Forger-headers_to_string"><strong>headers_to_string</strong></a>(self) -&gt; str</dt><dd><tt>This&nbsp;method&nbsp;return&nbsp;a&nbsp;printable&nbsp;string&nbsp;of&nbsp;email&nbsp;headers.</tt></dd></dl>
+
+<dl><dt><a name="Forger-part_to_string"><strong>part_to_string</strong></a>(self, part) -&gt; str</dt><dd><tt>This&nbsp;method&nbsp;return&nbsp;string&nbsp;of&nbsp;email&nbsp;part.</tt></dd></dl>
+
+<dl><dt><a name="Forger-print"><strong>print</strong></a>(self, ips: 
+bool = True, address: bool = True, headers: bool = True, part: bool = 
+False, attachements: bool = False, email: email.message.Message = None) 
+-&gt; None</dt><dd><tt>This&nbsp;method&nbsp;print&nbsp;a&nbsp;email&nbsp;and&nbsp;extract&nbsp;important&nbsp;informations.<br>
+Use&nbsp;it&nbsp;for&nbsp;email&nbsp;analysis.</tt></dd></dl>
+
+<dl><dt><a name="Forger-save_in_file"><strong>save_in_file</strong></a>(self, filename)</dt><dd><tt>This&nbsp;method&nbsp;save&nbsp;your&nbsp;email&nbsp;in&nbsp;file.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="http://192.168.0.29:8001/doc/Email.html#Email">Email.Email</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></tbody></table></p></td></tr></tbody></table></p><p>
+<table summary="section" width="100%" cellspacing="0" cellpadding="2" border="0">
+<tbody><tr bgcolor="#eeaa77">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font face="helvetica, arial" color="#ffffff"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-main"><strong>main</strong></a>()</dt></dl>
+</td></tr></tbody></table></p><p>
+<table summary="section" width="100%" cellspacing="0" cellpadding="2" border="0">
+<tbody><tr bgcolor="#55aa55">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font face="helvetica, arial" color="#ffffff"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['Forger', 'main']</td></tr></tbody></table>
+</p></body></html>

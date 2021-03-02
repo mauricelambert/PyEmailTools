@@ -81,7 +81,7 @@ EmailForgering -t "My Subject" -T "receiver.address@domain.com" -M "my.server.co
 
 EmailForgering -t "My Subject" -T "receiver.address@domain.com" -M "my.server.com" -O 587 -L -D -R "receiver.address@domain.com" -S "mail.eml" -H "<html><body><h1>Message</h1><p>My HTML message</p></body></html>" -p "Test" -N "my.address@domain.com" "my.address@domain.com" # Send HTML mail with special name, save it in a file and use a secure connection with debug mode.
 
-EmailForgering -t "My Subject" -T "fake.receiver@domain.com" -M "my.server.com" -O 587 -L -A "CustomHostname" -D -R "receiver1.address@domain.com,receiver2.address@domain.com" -S "mail.eml" -H "<html><body><h1>Message</h1><p>My HTML message</p></body></html>" -p "Test" -k "keywords,test,email" -c "this is my comment" -F -l "en,it" -a "kali.jpg" -m "Simple second message" -d "2020-04-02 11:20:03" -i 3 -s 3 -r 3 -e ROT13 -E "2020-11-12 09:00:00" -N "my.user@domain.com" "fake.sender@domain.com" # Use a fake receiver email (the real receivers can't see other real receivers address), add custom hostname, add keywords header, add comment header, add language, add attachment, add second body, change the sending date, add importance level, add sensibility level, add priority level, add the encrypted header, add expiring date and use your address to send this message but indicate a fake sender address.
+EmailForgering -t "My Subject" -T "fake.receiver@domain.com" -M "my.server.com" -O 587 -L -A "CustomHostname" -D -R "receiver1.address@domain.com,receiver2.address@domain.com" -S "mail.eml" -H "<html><body><h1>Message</h1><p>My HTML message</p></body></html>" -p "Test" -k "keywords,test,email" -c "this is my comment" -F -l "en,it" -a "kali.jpg" -m "Simple second message" -d "2020-04-02 11:20:03" -i 3 -s 3 -r 3 -e ROT13 -E "2020-11-12 09:00:00" -N "my.user@domain.com" -x "Email HTML with image." "fake.sender@domain.com" # Use a fake receiver email (the real receivers can't see other real receivers address), add custom hostname, add keywords header, add comment header, add language, add attachment, add second body, change the sending date, add importance level, add sensibility level, add priority level, add the encrypted header, add expiring date and use your address to send this message but indicate a fake sender address.
 ```
 
 ##### Analysis
@@ -106,7 +106,7 @@ sender = "my.address@domain.com"
 email = Forger(fake_sender, titre = "My Subject", pseudo = "Custom Name", comments = "My comments", 
        keywords = ["test", "forger", "email", "spoof"], date = datetime(2019, 5, 3), encrypted = "ROT13", 
        expires = datetime(2021, 1, 1), importance = 3, sensitivity = 3, language = ["test", "forger", "email", "spoof"], 
-       priority = 3)
+       priority = 3, default_text = "Email HTML with image.")
 email.add_recipient(fake_receivers)
 email.add_image("image.jpg", "<html><body><p>Message with an image.</p>[image]</body></html>")
 email.add_part("<html><body><p>Message without image.</p></body></html>", "html")
@@ -148,8 +148,15 @@ Email {index} / {total}
 		break
 ```
 
-## Link
-[Github Page](https://github.com/mauricelambert/PyEmailTools)
+## Links
+ - [Github Page](https://github.com/mauricelambert/PyEmailTools)
+ - [Documentation Forger](https://mauricelambert.github.io/info/python/security/PyEmailTools/Forger.html)
+ - [Documentation Email](https://mauricelambert.github.io/info/python/security/PyEmailTools/Email.html)
+ - [Documentation Reader](https://mauricelambert.github.io/info/python/security/PyEmailTools/Reader.html)
+ - [Documentation ImapClient](https://mauricelambert.github.io/info/python/security/PyEmailTools/ImapClient.html)
+ - [Documentation PopClient](https://mauricelambert.github.io/info/python/security/PyEmailTools/PopClient.html)
+ - [Documentation SmtpClient](https://mauricelambert.github.io/info/python/security/PyEmailTools/SmtpClient.html)
+ - [Download as python executable](https://mauricelambert.github.io/info/python/security/PyEmailTools.pyz)
 
 ## Licence
 Licensed under the [GPL, version 3](https://www.gnu.org/licenses/).

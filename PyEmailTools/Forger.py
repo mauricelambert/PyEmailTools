@@ -3,7 +3,7 @@
 
 ###################
 #    This file implement the Forger class.
-#    Copyright (C) 2020  Maurice Lambert
+#    Copyright (C) 2020, 2021  Maurice Lambert
 
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -27,9 +27,13 @@ from email.mime.image import MIMEImage
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from datetime import datetime
-from .Email import Email
 from os import path
 import email.utils
+
+try:
+    from .Email import Email
+except ImportError:
+    from Email import Email
 
 __all__ = [ "Forger", "main" ]
 
@@ -51,7 +55,8 @@ class Forger(Email):
         sensitivity: int = 0,
         language: list = None,
         priority: int = 0,
-        add_from: bool = False
+        add_from: bool = False,
+        default_text: str = "Your mailer can't read this email."
     ):
         super().__init__()
         if pseudo:
@@ -107,10 +112,11 @@ class Forger(Email):
             self.keywords = None
         self.titre = titre
         self.date = email.utils.format_datetime(date)
-        self.email = MIMEMultipart("mixed")  # mixed == one message, the default
-        self.email_content = MIMEMultipart(
+        self.email = MIMEMultipart(
             "alternative"
         )  # can send more than one message
+
+        self.add_part(default_text)
 
     def add_part(self, text, content="plain", add=True):
 
@@ -118,7 +124,7 @@ class Forger(Email):
 
         if add:
             part = MIMEText(text, content, _charset="utf-8")
-            self.email_content.attach(part)
+            self.email.attach(part)
             self.part[f"part-{hex(self.id)}.{content}"] = part.get_payload(
                 decode=True
             ).decode()
@@ -154,12 +160,15 @@ class Forger(Email):
         self.part[f"part-{hex(self.id)}.html"] = html_part.get_payload(
             decode=True
         ).decode()
-        self.email_content.attach(part)
+        self.email.attach(part)
         self.id += 1
 
     def add_attachement(self, filename):
 
         """ This method add part attachment in email. """
+
+        email = MIMEMultipart("mixed") # Multipart with email + attachement
+        email.attach(self.email)
 
         part = MIMEBase(
             "application",
@@ -179,7 +188,9 @@ class Forger(Email):
             self.attachements[filename] = part.get_payload(decode=True).decode()
         except UnicodeDecodeError:
             self.attachements[filename] = part.get_payload()
-        self.email_content.attach(part)
+        email.attach(part)
+
+        self.email = email
 
     def add_recipient(self, email):
 
@@ -219,8 +230,6 @@ class Forger(Email):
         if self.titre:
             self.email["Subject"] = self.titre
         self.email["To"] = ", ".join(self.recipients)
-
-        self.email.attach(self.email_content)
 
 
 def parse():
@@ -321,7 +330,7 @@ def parse():
     parser.add_argument(
         "--debugconnection",
         "-D",
-        help="Verbosity level fort SMTP client.",
+        help="Verbosity level for SMTP client.",
         default=False,
         action="store_true",
     )
@@ -337,6 +346,12 @@ def parse():
         "-A",
         help="Machine name to send to the server with ehlo command.",
         default="PyEmailTools",
+    )
+    parser.add_argument(
+        "--default-text",
+        "-x",
+        help="Default text if HTML can't be read by mailer.",
+        default="Your mailer can't read this email.",
     )
     return parser.parse_args()
 
@@ -365,7 +380,10 @@ def format_parser(parser):
 
 
 def main():
-    from .SmtpClient import SmtpClient
+    try:
+        from .SmtpClient import SmtpClient
+    except ImportError:
+        from SmtpClient import SmtpClient
 
     parser = format_parser(parse())
     email = Forger(

@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module Reader</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head><body bgcolor="#f0f0f8">
+
+<table summary="heading" width="100%" cellspacing="0" cellpadding="2" border="0">
+<tbody><tr bgcolor="#7799ee">
+<td valign="bottom">&nbsp;<br>
+<font face="helvetica, arial" color="#ffffff">&nbsp;<br><big><big><strong>Reader</strong></big></big></font></td><td valign="bottom" align="right"><font face="helvetica, arial" color="#ffffff"><a href="http://192.168.0.29:8001/doc/">index</a><br><a href="http://192.168.0.29:8001/doc/reader.py">reader.py</a></font></td></tr></tbody></table>
+    <p><tt>This&nbsp;file&nbsp;implement&nbsp;the&nbsp;<a href="#Reader">Reader</a>&nbsp;class.</tt></p>
+<p>
+<table summary="section" width="100%" cellspacing="0" cellpadding="2" border="0">
+<tbody><tr bgcolor="#aa55cc">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font face="helvetica, arial" color="#ffffff"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table summary="list" width="100%"><tbody><tr><td width="25%" valign="top"><a href="http://192.168.0.29:8001/doc/mimetypes.html">mimetypes</a><br>
+</td><td width="25%" valign="top"></td><td width="25%" valign="top"></td><td width="25%" valign="top"></td></tr></tbody></table></td></tr></tbody></table></p><p>
+<table summary="section" width="100%" cellspacing="0" cellpadding="2" border="0">
+<tbody><tr bgcolor="#ee77aa">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font face="helvetica, arial" color="#ffffff"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="http://192.168.0.29:8001/doc/Email.html#Email">Email.Email</a>(<a href="http://192.168.0.29:8001/doc/builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="http://192.168.0.29:8001/doc/Reader.html#Reader">Reader</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table summary="section" width="100%" cellspacing="0" cellpadding="2" border="0">
+<tbody><tr bgcolor="#ffc8d8">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font face="helvetica, arial" color="#000000"><a name="Reader">class <strong>Reader</strong></a>(<a href="http://192.168.0.29:8001/doc/Email.html#Email">Email.Email</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan="2"><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan="2"><tt><a href="#Reader">Reader</a>(filename=None)<br>
+&nbsp;<br>
+This&nbsp;class&nbsp;read&nbsp;eml&nbsp;file,&nbsp;parse&nbsp;the&nbsp;mail&nbsp;and&nbsp;extract&nbsp;information.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="http://192.168.0.29:8001/doc/Reader.html#Reader">Reader</a></dd>
+<dd><a href="http://192.168.0.29:8001/doc/Email.html#Email">Email.Email</a></dd>
+<dd><a href="http://192.168.0.29:8001/doc/builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Reader-__init__"><strong>__init__</strong></a>(self, filename=None)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Reader-get_part"><strong>get_part</strong></a>(self)</dt><dd><tt>This&nbsp;method&nbsp;parse&nbsp;part&nbsp;in&nbsp;email.</tt></dd></dl>
+
+<dl><dt><a name="Reader-get_part_name"><strong>get_part_name</strong></a>(self, part, id_)</dt><dd><tt>This&nbsp;method&nbsp;get&nbsp;the&nbsp;name&nbsp;of&nbsp;a&nbsp;part.</tt></dd></dl>
+
+<dl><dt><a name="Reader-get_part_payload"><strong>get_part_payload</strong></a>(self, part, filename, id_)</dt><dd><tt>This&nbsp;method&nbsp;decode&nbsp;email&nbsp;payload.</tt></dd></dl>
+
+<dl><dt><a name="Reader-make_email"><strong>make_email</strong></a>(self, email: bytes = None)</dt><dd><tt>This&nbsp;method&nbsp;parse&nbsp;email&nbsp;bytes&nbsp;and&nbsp;get&nbsp;important&nbsp;informations&nbsp;for&nbsp;analysis.</tt></dd></dl>
+
+<dl><dt><a name="Reader-research"><strong>research</strong></a>(self, pattern: str, regex: bool = False, keep_uppercase: bool = False, glob: bool = False)</dt><dd><tt>This&nbsp;method&nbsp;research&nbsp;pattern&nbsp;in&nbsp;email&nbsp;data&nbsp;and&nbsp;decoded&nbsp;part.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="http://192.168.0.29:8001/doc/Email.html#Email">Email.Email</a>:<br>
+<dl><dt><a name="Reader-check_email"><strong>check_email</strong></a>(self, email: str) -&gt; bool</dt><dd><tt>This&nbsp;method&nbsp;check&nbsp;an&nbsp;email&nbsp;address.</tt></dd></dl>
+
+<dl><dt><a name="Reader-headers_to_string"><strong>headers_to_string</strong></a>(self) -&gt; str</dt><dd><tt>This&nbsp;method&nbsp;return&nbsp;a&nbsp;printable&nbsp;string&nbsp;of&nbsp;email&nbsp;headers.</tt></dd></dl>
+
+<dl><dt><a name="Reader-part_to_string"><strong>part_to_string</strong></a>(self, part) -&gt; str</dt><dd><tt>This&nbsp;method&nbsp;return&nbsp;string&nbsp;of&nbsp;email&nbsp;part.</tt></dd></dl>
+
+<dl><dt><a name="Reader-print"><strong>print</strong></a>(self, ips: 
+bool = True, address: bool = True, headers: bool = True, part: bool = 
+False, attachements: bool = False, email: email.message.Message = None) 
+-&gt; None</dt><dd><tt>This&nbsp;method&nbsp;print&nbsp;a&nbsp;email&nbsp;and&nbsp;extract&nbsp;important&nbsp;informations.<br>
+Use&nbsp;it&nbsp;for&nbsp;email&nbsp;analysis.</tt></dd></dl>
+
+<dl><dt><a name="Reader-save_in_file"><strong>save_in_file</strong></a>(self, filename)</dt><dd><tt>This&nbsp;method&nbsp;save&nbsp;your&nbsp;email&nbsp;in&nbsp;file.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="http://192.168.0.29:8001/doc/Email.html#Email">Email.Email</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></tbody></table></p></td></tr></tbody></table></p><p>
+<table summary="section" width="100%" cellspacing="0" cellpadding="2" border="0">
+<tbody><tr bgcolor="#eeaa77">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font face="helvetica, arial" color="#ffffff"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-main"><strong>main</strong></a>()</dt></dl>
+</td></tr></tbody></table></p><p>
+<table summary="section" width="100%" cellspacing="0" cellpadding="2" border="0">
+<tbody><tr bgcolor="#55aa55">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font face="helvetica, arial" color="#ffffff"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['Reader', 'main']</td></tr></tbody></table>
+</p></body></html>

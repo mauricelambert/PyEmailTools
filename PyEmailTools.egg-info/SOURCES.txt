@@ -1,6 +1,7 @@
 LICENSE.txt
 MANIFEST.in
 README.md
+setup.cfg
 setup.py
 PyEmailTools/Email.py
 PyEmailTools/Forger.py
@@ -10,6 +11,7 @@ PyEmailTools/PopClient.py
 PyEmailTools/Reader.py
 PyEmailTools/SmtpClient.py
 PyEmailTools/__init__.py
+PyEmailTools/__main__.py
 PyEmailTools.egg-info/PKG-INFO
 PyEmailTools.egg-info/SOURCES.txt
 PyEmailTools.egg-info/dependency_links.txt

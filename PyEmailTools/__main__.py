@@ -23,22 +23,29 @@
 	This package implement tools for email analysis and email forgering.
 """
 
-__version__ = "0.0.7"
+from PyEmailTools.Forger import main as forger
+from PyEmailTools.Reader import main as analysis
+from sys import argv
 
-__all__ = [
-	"Forger", "Reader", "ImapClient", "SmtpClient", "PopClient", 
-	"forger", "analysis"
-]
+if len(argv) > 1:
+	script = argv.pop(1).lower()
+	if script == "forger":
+		forger()
+		exit(0)
+	elif script == "analysis":
+		analysis()
+		exit(0)
 
-print("""
-PyEmailTools  Copyright (C) 2020, 2021  Maurice Lambert
-This program comes with ABSOLUTELY NO WARRANTY.
-This is free software, and you are welcome to redistribute it
-under certain conditions.
+print("""USAGES: 
+	./PyEmailTools.pyz forger
+	./PyEmailTools.pyz analysis
+	python3 PyEmailTools.pyz forger
+	python3 PyEmailTools.pyz analysis
+
+HELP:
+	./PyEmailTools.pyz forger -h
+	./PyEmailTools.pyz analysis --help
+	python3 PyEmailTools.pyz forger --help
+	python3 PyEmailTools.pyz analysis -h
 """)
-
-from PyEmailTools.Forger import Forger, main as forger
-from PyEmailTools.Reader import Reader, main as analysis
-from PyEmailTools.ImapClient import ImapClient
-from PyEmailTools.SmtpClient import SmtpClient
-from PyEmailTools.PopClient import PopClient
+exit(1)

@@ -3,7 +3,7 @@
 
 ###################
 #    This file implement the Reader class.
-#    Copyright (C) 2020  Maurice Lambert
+#    Copyright (C) 2020, 2021  Maurice Lambert
 
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -23,10 +23,14 @@
 
 from email.parser import BytesParser
 from email.policy import default
-from .Email import Email, Constantes
-import mimetypes
-from re import finditer
 from fnmatch import fnmatch
+from re import finditer
+import mimetypes
+
+try:
+    from .Email import Email, Constantes
+except ImportError:
+    from Email import Email, Constantes
 
 __all__ = [ "Reader", "main" ]
 
@@ -316,7 +320,10 @@ def parse():
 
 
 def get_imap_client(parser):
-    from .ImapClient import ImapClient
+    try:
+        from .ImapClient import ImapClient
+    except ImportError:
+        from ImapClient import ImapClient
 
     return ImapClient(
         server=parser.servername,
@@ -329,7 +336,10 @@ def get_imap_client(parser):
 
 
 def get_pop3_client(parser):
-    from .PopClient import PopClient
+    try:
+        from .PopClient import PopClient
+    except ImportError:
+        from PopClient import PopClient
 
     return PopClient(
         parser.servername,

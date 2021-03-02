@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module SmtpClient</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head><body bgcolor="#f0f0f8">
+
+<table summary="heading" width="100%" cellspacing="0" cellpadding="2" border="0">
+<tbody><tr bgcolor="#7799ee">
+<td valign="bottom">&nbsp;<br>
+<font face="helvetica, arial" color="#ffffff">&nbsp;<br><big><big><strong>SmtpClient</strong></big></big></font></td><td valign="bottom" align="right"><font face="helvetica, arial" color="#ffffff"><a href="http://192.168.0.29:8001/doc/">index</a><br><a href="http://192.168.0.29:8001/doc/smtpclient.py">smtpclient.py</a></font></td></tr></tbody></table>
+    <p><tt>This&nbsp;file&nbsp;implement&nbsp;the&nbsp;<a href="#SmtpClient">SmtpClient</a>.</tt></p>
+<p>
+<table summary="section" width="100%" cellspacing="0" cellpadding="2" border="0">
+<tbody><tr bgcolor="#aa55cc">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font face="helvetica, arial" color="#ffffff"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table summary="list" width="100%"><tbody><tr><td width="25%" valign="top"><a href="http://192.168.0.29:8001/doc/smtplib.html">smtplib</a><br>
+</td><td width="25%" valign="top"></td><td width="25%" valign="top"></td><td width="25%" valign="top"></td></tr></tbody></table></td></tr></tbody></table></p><p>
+<table summary="section" width="100%" cellspacing="0" cellpadding="2" border="0">
+<tbody><tr bgcolor="#ee77aa">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font face="helvetica, arial" color="#ffffff"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="http://192.168.0.29:8001/doc/builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="http://192.168.0.29:8001/doc/SmtpClient.html#SmtpClient">SmtpClient</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table summary="section" width="100%" cellspacing="0" cellpadding="2" border="0">
+<tbody><tr bgcolor="#ffc8d8">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font face="helvetica, arial" color="#000000"><a name="SmtpClient">class <strong>SmtpClient</strong></a>(<a href="http://192.168.0.29:8001/doc/builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan="2"><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan="2"><tt><a href="#SmtpClient">SmtpClient</a>(smtp=None,&nbsp;port=25,&nbsp;username=None,&nbsp;password=None,&nbsp;use_tls=True,&nbsp;use_gpg=True,&nbsp;debug=False)<br>
+&nbsp;<br>
+This&nbsp;class&nbsp;send&nbsp;email&nbsp;with&nbsp;SMTP&nbsp;protocol.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="SmtpClient-__init__"><strong>__init__</strong></a>(self, smtp=None, port=25, username=None, password=None, use_tls=True, use_gpg=True, debug=False)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="SmtpClient-get_valid_receivers"><strong>get_valid_receivers</strong></a>(self, addressS, email)</dt><dd><tt>This&nbsp;method&nbsp;return&nbsp;valid&nbsp;address.<br>
+If&nbsp;address&nbsp;isn't&nbsp;valid&nbsp;you&nbsp;get&nbsp;a&nbsp;ERROR&nbsp;message&nbsp;in&nbsp;your&nbsp;console&nbsp;with&nbsp;the&nbsp;specific&nbsp;address.</tt></dd></dl>
+
+<dl><dt><a name="SmtpClient-send"><strong>send</strong></a>(self, email: Email.Email, from_: str, to: list, name: str = 'PyEmailTools') -&gt; None</dt><dd><tt>This&nbsp;method&nbsp;send&nbsp;an&nbsp;email.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></tbody></table></p></td></tr></tbody></table></p><p>
+<table summary="section" width="100%" cellspacing="0" cellpadding="2" border="0">
+<tbody><tr bgcolor="#55aa55">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font face="helvetica, arial" color="#ffffff"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['SmtpClient']</td></tr></tbody></table>
+</p></body></html>

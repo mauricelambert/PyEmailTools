@@ -20,32 +20,33 @@
 ###################
 
 """
-	This package implement tools for email analysis and email forgering.
+    This package implement tools for email analysis and email forgering.
 """
 
-from PyEmailTools.Forger import main as forger
-from PyEmailTools.Reader import main as analysis
+try:
+    from .Forger import main as forger
+    from .Reader import main as analysis
+except ImportError:
+    from Forger import main as forger
+    from Reader import main as analysis
 from sys import argv
+from os import path
 
 if len(argv) > 1:
-	script = argv.pop(1).lower()
-	if script == "forger":
-		forger()
-		exit(0)
-	elif script == "analysis":
-		analysis()
-		exit(0)
+    script = argv.pop(1).lower()
+    if script == "forger":
+        forger()
+        exit(0)
+    elif script == "analysis":
+        analysis()
+        exit(0)
 
-print("""USAGES: 
-	./PyEmailTools.pyz forger
-	./PyEmailTools.pyz analysis
-	python3 PyEmailTools.pyz forger
-	python3 PyEmailTools.pyz analysis
+print(f"""USAGES: 
+    {path.basename(argv[0])} forger
+    {path.basename(argv[0])} analysis
 
 HELP:
-	./PyEmailTools.pyz forger -h
-	./PyEmailTools.pyz analysis --help
-	python3 PyEmailTools.pyz forger --help
-	python3 PyEmailTools.pyz analysis -h
+    {path.basename(argv[0])} forger -h
+    {path.basename(argv[0])} analysis --help
 """)
 exit(1)

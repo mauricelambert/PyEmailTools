@@ -154,6 +154,23 @@ Email {index} / {total}
 		break
 ```
 
+### Python executable
+
+```bash
+python3 PyEmailTools.pyz forger -t "My Subject" -T "receiver.address@domain.com" -M "my.server.com" -O 587 -L -R "receiver.address@domain.com" -m "My message" -U "my.address@domain.com" -P "my_password" "my.address@domain.com"
+
+# OR
+chmod u+x PyEmailTools.pyz # add execute rights
+./PyEmailTools.pyz analysis -G -S "test" -f "*.eml" -i -a -B -s "@*.com" "files"  # execute file
+```
+
+### Python module (command line):
+
+```bash
+python3 -m PyEmailTools analysis -G -S "test" -f "*.eml" -i -a -B -s "@*.com" "files"
+python3 -m PyEmailTools.Forger -t "My Subject" -T "receiver.address@domain.com" -M "my.server.com" -O 587 -L -R "receiver.address@domain.com" -m "My message" -U "my.address@domain.com" -P "my_password" "my.address@domain.com"
+```
+
 ## Links
  - [Github Page](https://github.com/mauricelambert/PyEmailTools)
  - [Documentation Forger](https://mauricelambert.github.io/info/python/security/PyEmailTools/Forger.html)
@@ -163,6 +180,7 @@ Email {index} / {total}
  - [Documentation PopClient](https://mauricelambert.github.io/info/python/security/PyEmailTools/PopClient.html)
  - [Documentation SmtpClient](https://mauricelambert.github.io/info/python/security/PyEmailTools/SmtpClient.html)
  - [Download as python executable](https://mauricelambert.github.io/info/python/security/PyEmailTools.pyz)
+ - [Pypi package](https://pypi.org/project/PyEmailTools/)
 
 ## Licence
 Licensed under the [GPL, version 3](https://www.gnu.org/licenses/).

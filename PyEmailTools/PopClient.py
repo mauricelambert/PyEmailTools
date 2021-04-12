@@ -23,7 +23,8 @@
 
 import poplib
 
-__all__ = [ "PopClient" ]
+__all__ = ["PopClient"]
+
 
 class PopClient:
 

@@ -24,7 +24,9 @@ setup(
         "Environment :: Console",
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
         "Natural Language :: English",
-        "Operating System :: OS Independent",
+        "Operating System :: POSIX :: Linux",
+        "Operating System :: Microsoft :: Windows",
+        "Operating System :: MacOS",
         "Programming Language :: Python :: 3.8",
         "Topic :: Security"
     ],

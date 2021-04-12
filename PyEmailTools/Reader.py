@@ -26,13 +26,15 @@ from email.policy import default
 from fnmatch import fnmatch
 from re import finditer
 import mimetypes
+import logging
 
 try:
     from .Email import Email, Constantes
 except ImportError:
     from Email import Email, Constantes
 
-__all__ = [ "Reader", "main" ]
+__all__ = ["Reader", "main"]
+
 
 class Reader(Email):
 
@@ -47,6 +49,8 @@ class Reader(Email):
 
         """ This method parse email bytes and get important informations for analysis. """
 
+        logging.debug("Read, parse and extract informations from email.")
+
         if not email:
             email_file = open(self.file, "rb")
             self.email = BytesParser().parse(email_file)
@@ -58,11 +62,13 @@ class Reader(Email):
             self.address.append(address.group().strip())
 
         for ip in finditer("([0-9]{1,3}[.]){3}[0-9]{1,3}", str(self.email)):
+            logging.info(f"IPv4 found: {ip}")
             self.ips.append(ip.group())
 
         for ip in finditer(
             "\[IPv6[:]([0-9a-f]{1,4}[:]{1,2}){1,7}[0-9a-f]{0,4}\]", str(self.email)
         ):
+            logging.info(f"IPv6 found: {ip}")
             self.ips.append(ip.group())
 
         for header in self.email._headers:
@@ -77,6 +83,7 @@ class Reader(Email):
         id_ = 0
 
         for part in self.email.walk():
+
             id_ += 1
             disposition = part.get("Content-Disposition")
             if disposition:
@@ -89,11 +96,15 @@ class Reader(Email):
                 self.attachements[f"{filename} :: {id_}"] = self.get_part_payload(
                     part, filename, id_
                 )
+
+                logging.info(f"Get email attachment named {filename}")
             else:
                 filename = self.get_part_name(part, id_)
                 self.part[f"{filename} :: {id_}"] = self.get_part_payload(
                     part, filename, id_
                 )
+
+                logging.info(f"Get email part named {filename}")
 
     def get_part_payload(self, part, filename, id_):
 
@@ -220,7 +231,7 @@ def parse():
         "-r",
         help="Number of request to send to the server.",
         type=int,
-        default=0
+        default=0,
     )
     parser.add_argument(
         "--limit", "-l", help="Limit the number of email to get.", type=int, default=0
@@ -445,6 +456,7 @@ def get_data_from_files(parser):
 
 def main():
     from getpass import getpass
+
     parser = parse()
 
     address = []

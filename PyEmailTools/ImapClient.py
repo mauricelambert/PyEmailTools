@@ -23,7 +23,8 @@
 
 import imaplib
 
-__all__ = [ "ImapClient" ]
+__all__ = ["ImapClient"]
+
 
 class ImapClient:
 

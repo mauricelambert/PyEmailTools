@@ -29,13 +29,15 @@ from email.mime.base import MIMEBase
 from datetime import datetime
 from os import path
 import email.utils
+import logging
 
 try:
-    from .Email import Email
+    from .Email import Email, AdressError
 except ImportError:
-    from Email import Email
+    from Email import Email, AdressError
 
-__all__ = [ "Forger", "main" ]
+__all__ = ["Forger", "main"]
+
 
 class Forger(Email):
 
@@ -56,7 +58,7 @@ class Forger(Email):
         language: list = None,
         priority: int = 0,
         add_from: bool = False,
-        default_text: str = "Your mailer can't read this email."
+        default_text: str = "Default text by PyEmailTools.",
     ):
         super().__init__()
         if pseudo:
@@ -112,9 +114,7 @@ class Forger(Email):
             self.keywords = None
         self.titre = titre
         self.date = email.utils.format_datetime(date)
-        self.email = MIMEMultipart(
-            "alternative"
-        )  # can send more than one message
+        self.email = MIMEMultipart("alternative")  # can send more than one message
 
         self.add_part(default_text)
 
@@ -123,6 +123,8 @@ class Forger(Email):
         """ This method add a part in email. """
 
         if add:
+            logging.debug("Add a new email part")
+
             part = MIMEText(text, content, _charset="utf-8")
             self.email.attach(part)
             self.part[f"part-{hex(self.id)}.{content}"] = part.get_payload(
@@ -136,6 +138,8 @@ class Forger(Email):
 
         """This method add part in email with image (this image isn't a attachment).
         This image must be inside HTML code."""
+
+        logging.debug("Add image and HTML")
 
         part = MIMEMultipart(
             "related"
@@ -167,7 +171,9 @@ class Forger(Email):
 
         """ This method add part attachment in email. """
 
-        email = MIMEMultipart("mixed") # Multipart with email + attachement
+        logging.debug("Add attachment")
+
+        email = MIMEMultipart("mixed")  # Multipart with email + attachement
         email.attach(self.email)
 
         part = MIMEBase(
@@ -196,19 +202,22 @@ class Forger(Email):
 
         """ This method add a receiver address. """
 
-        email = self.check_email(email)
-        if email and isinstance(email, str):
-            self.address.append(email)
-            self.recipients.append(email)
+        email_ = self.check_email(email)
+        if email_ and isinstance(email_, str):
+            logging.info(f"Add destination address: {email_}")
+            self.address.append(email_)
+            self.recipients.append(email_)
         else:
-            return "ERROR : email is not valid, please add a valid email."
+            raise AdressError(f"{email} is invalid")
 
     def make_email(self):
 
         """ This method build the email message. """
 
+        logging.debug("Build email")
+
         self.email["Sender"] = self.sender
-        if self.add_from :
+        if self.add_from:
             self.email["From"] = self.sender
         self.email["Date"] = self.date
         if self.comments:
@@ -234,6 +243,7 @@ class Forger(Email):
 
 def parse():
     from argparse import ArgumentParser
+
     parser = ArgumentParser()
     parser.add_argument("sender", help="The sender address.")
     parser.add_argument(
@@ -261,13 +271,28 @@ def parse():
         default=None,
     )
     parser.add_argument(
-        "--importance", "-i", help="Email importance", choices=[1, 2, 3], default=0, type=int
+        "--importance",
+        "-i",
+        help="Email importance",
+        choices=[1, 2, 3],
+        default=0,
+        type=int,
     )
     parser.add_argument(
-        "--sensitivity", "-s", help="Email sensitivity", choices=[1, 2, 3], default=0, type=int
+        "--sensitivity",
+        "-s",
+        help="Email sensitivity",
+        choices=[1, 2, 3],
+        default=0,
+        type=int,
     )
     parser.add_argument(
-        "--priority", "-r", help="Email priority", choices=[1, 2, 3], default=0, type=int
+        "--priority",
+        "-r",
+        help="Email priority",
+        choices=[1, 2, 3],
+        default=0,
+        type=int,
     )
     parser.add_argument(
         "--language", "-l", help='Email language (example : "en,fr,it").', default=None
@@ -399,11 +424,14 @@ def main():
         sensitivity=parser.sensitivity,
         language=parser.language,
         priority=parser.priority,
-        add_from=parser.add_from
+        add_from=parser.add_from,
     )
 
     for receiver in parser.to:
-        email.add_recipient(receiver)
+        try:
+            email.add_recipient(receiver)
+        except AdressError as e:
+            print(e)
 
     if parser.messageHTML:
         email.add_part(parser.messageHTML, "html")
@@ -429,7 +457,11 @@ def main():
             False,
             parser.debugconnection,
         )
-        smtpclient.send(email, parser.user, parser.receivers, parser.ehlo)
+
+        try:
+            smtpclient.send(email, parser.user, parser.receivers, parser.ehlo)
+        except AdressError as e:
+            print(f"ERROR: {e}, email is not send.")
 
 
 if __name__ == "__main__":

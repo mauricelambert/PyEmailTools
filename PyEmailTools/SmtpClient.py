@@ -22,13 +22,14 @@
 """ This file implement the SmtpClient. """
 
 import smtplib
+import logging
 
 try:
-    from .Email import Email
+    from .Email import Email, AdressError
 except ImportError:
-    from Email import Email
+    from Email import Email, AdressError
 
-__all__ = [ "SmtpClient" ]
+__all__ = ["SmtpClient"]
 
 
 class SmtpClient:
@@ -59,31 +60,48 @@ class SmtpClient:
 
         """ This method send an email. """
 
-        to = self.get_valid_receivers(to + [from_], email)
+        logging.debug("Check email address.")
+        to = self.get_valid_receivers(to, email)
+        from_ = self.get_valid_receivers([from_], email)
+
+        if len(from_) != 1:
+            raise AdressError("Source address is invalid.")
+
+        if len(to) == 0:
+            raise AdressError("Destination addresses are not valid.")
+
+        logging.info("Sending email...")
+
         self.mailserver = smtplib.SMTP(self.smtp, self.port)
         self.mailserver.ehlo(name)
         self.mailserver.helo(name)
+
         if self.debug:
             self.mailserver.set_debuglevel(1)
         if self.use_tls:
+            logging.info("Starting TLS...")
             self.mailserver.starttls()
             self.mailserver.ehlo(name)
             self.mailserver.helo(name)
         if self.username and self.password:
+            logging.debug("Authentication...")
             self.mailserver.login(self.username, self.password)
+
         self.mailserver.sendmail(from_, to, email.email.as_string())
         self.mailserver.quit()
 
+        logging.debug("Email is sent.")
+
     def get_valid_receivers(self, addressS, email):
 
-        """This method return valid address.
-        If address isn't valid you get a ERROR message in your console with the specific address."""
+        """This method return valid addresses.
+        If address isn't valid you get a error log in your
+        logging file with the specific address."""
 
         receivers = []
         for address in addressS:
             email_ = email.check_email(address)
-            if not email_ and not isinstance(email_, str):
-                print(f"ERROR: this address isn't valid : {address}")
-            else:
-                receivers.append(address)
+            if email_ and isinstance(email_, str):
+                logging.debug(f"{email_} is valid.")
+                receivers.append(email_)
         return receivers

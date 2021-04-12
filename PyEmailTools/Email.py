@@ -23,14 +23,25 @@
 
 from enum import Enum
 import email.message
+import logging
 import re
 
-__all__ = [ "Email", "Constantes" ]
+__all__ = ["Email", "Constantes"]
+
+
+class AdressError(Exception):
+
+    """This class raise a custom Exception for invalid address"""
+
+    pass
 
 
 class Constantes(Enum):
 
-    REGEX_EMAIL = "([a-zA-Z0-9 ]* ?[<][\w\.+-]+@([\w-]+\.)+[\w-]{2,4}[>])|([\w\.+-]+@([\w-]+\.)+[\w-]{2,4})"
+    REGEX_EMAIL = (
+        "([a-zA-Z0-9 ]* ?[<][\w\.+-]+@([\w-]+\.)+[\w-]"
+        "{2,4}[>])|([\w\.+-]+@([\w-]+\.)+[\w-]{2,4})"
+    )
 
 
 class Email:
@@ -47,13 +58,16 @@ class Email:
 
     def check_email(self, email: str) -> bool:
 
-        """ This method check an email address. """
+        """This method check an email address.
+        If address is invalid this function log an error message and return None
+        If address is valid this function return the valid address."""
 
-        email = re.match(Constantes.REGEX_EMAIL.value, email)
-        if email:
-            return email.group()
+        email_ = re.match(Constantes.REGEX_EMAIL.value, email)
+        if email_:
+            return email_.group()
         else:
-            return False
+            logging.error(f"this address isn't valid : {email}")
+            return None
 
     def print(
         self,
@@ -124,4 +138,4 @@ class Email:
         file = open(filename, "w")
         file.write(self.email.as_string())
         file.close()
-        print(f"Your email is saved in {filename}")
+        logging.info(f"Your email is saved in {filename}")
